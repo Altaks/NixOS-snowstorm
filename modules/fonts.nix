@@ -8,12 +8,13 @@
       fira-sans
       vistafonts
       roboto
+      (nerdfonts.override { fonts = [ "FiraCode" "CascadiaCode" "CascadiaMono" ]; })
     ];
     fontconfig = {
       defaultFonts = {
         serif = ["roboto-serif" "serif"];
         sansSerif = ["Roboto" "Fira Sans" "sans-serif"];
-        monospace = ["CaskaydiaCove" "Fira Code" "monospace"];
+        monospace = ["CascadiaCode" "Fira Code" "monospace"];
       };
     };
   };

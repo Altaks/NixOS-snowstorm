@@ -37,7 +37,7 @@
     {
       nixosConfigurations = {
         
-        hantroxion = nixpkgs.lib.nixosSystem {
+        hantrox = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
           };

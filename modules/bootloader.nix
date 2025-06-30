@@ -37,7 +37,7 @@
       memtest86.enable = true;
 
       # Configure the grub theme
-      theme = "/home/%%%username%%%/.dotfiles/grub-theme";
+      theme = "/home/altaks/.dotfiles/grub-theme";
 
       # Add custom entries : 
       # - Direct BIOS/UEFI access

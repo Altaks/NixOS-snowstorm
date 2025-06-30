@@ -91,5 +91,5 @@ echo "Switching current system's configuration."
 if [ "$#" -ne 0 ]; then 
     sudo nixos-rebuild switch --upgrade-all --flake /etc/nixos/#$1
 else 
-    sudo nixos-rebuild switch --upgrade-all --flake /etc/nixos/#base
+    sudo nixos-rebuild switch --upgrade-all --flake /etc/nixos/#hantrox
 fi

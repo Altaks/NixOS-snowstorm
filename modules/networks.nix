@@ -1,7 +1,7 @@
 { inputs, config, lib, pkgs, ... }: { 
   
   # Defines your hostname
-  networking.hostName = "%%%hostname%%%";
+  networking.hostName = "hantrox";
   
   # Pick only one of the below networking options.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.

@@ -3,8 +3,8 @@
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
-  ## Select internationalisation properties - Set to pure french.
-  i18n.defaultLocale = "fr_FR.UTF-8";
+  # Select internationalisation properties - Set to system english.
+  i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "fr_FR.UTF-8";

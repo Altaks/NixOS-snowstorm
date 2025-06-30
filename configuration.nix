@@ -18,7 +18,7 @@
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     users = {
-      "%%%username%%%" = import ./home-manager/home.nix;
+      "altaks" = import ./home-manager/home.nix;
     };
   };
   
@@ -40,14 +40,14 @@
   '';
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.%%%username%%% = {
+  users.users.altaks = {
     isNormalUser = true;
-    description = "%%%username%%%";
+    description = "altaks";
     extraGroups = [ "networkmanager" "wheel" "docker" "kvm" "adbusers" "qemu-libvirtd" "libvirtd" ];
     packages = with pkgs; [];
   };
 
-  users.extraGroups.vboxusers.members = [ "%%%username%%%" ];
+  users.extraGroups.vboxusers.members = [ "altaks" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

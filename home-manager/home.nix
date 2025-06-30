@@ -1,7 +1,7 @@
 { inputs, config, lib, pkgs, ... }:
 {
-  home.username = "%%%username%%%";
-  home.homeDirectory = "/home/%%%username%%%";
+  home.username = "altaks";
+  home.homeDirectory = "/home/altaks";
 
   home.stateVersion = "25.05";
 
@@ -10,13 +10,6 @@
   home.packages = [
     # Fastfetch - https://github.com/fastfetch-cli/fastfetch
     pkgs.fastfetch
-
-    # Discord w/ Vencord - https://vencord.dev/
-    (
-      pkgs.discord.override {
-        withVencord = true;
-      }
-    )
   ];
 
   # Gnome configuration
@@ -153,7 +146,7 @@
       export CHROME_EXECUTABLE="$(which chromium)"; 
       
       # Export Android related paths
-      export ANDROID_HOME="/home/%%%username%%%/Android/Sdk";
+      export ANDROID_HOME="/home/altaks/Android/Sdk";
     '';
   };
 
@@ -174,8 +167,8 @@
 
   # System hardlinks for configurations
   home.file = {
-    ".config/fastfetch".source = config.lib.file.mkOutOfStoreSymlink /home/%%%username%%%/.dotfiles/fastfetch;
-    ".config/oh-my-posh".source = config.lib.file.mkOutOfStoreSymlink /home/%%%username%%%/.dotfiles/oh-my-posh;
+    ".config/fastfetch".source = config.lib.file.mkOutOfStoreSymlink /home/altaks/.dotfiles/fastfetch;
+    ".config/oh-my-posh".source = config.lib.file.mkOutOfStoreSymlink /home/altaks/.dotfiles/oh-my-posh;
   };
 
   programs.home-manager.enable=true;
