@@ -57,5 +57,8 @@
           golang.go
         ];
       })
+
+      # Intellij IDEA Ultimate
+      jetbrains.idea-ultimate
   ];
 }
