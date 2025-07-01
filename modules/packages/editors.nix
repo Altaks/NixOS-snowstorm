@@ -52,6 +52,9 @@
 
           # Rust support
           rust-lang.rust-analyzer
+
+          # Go support
+          golang.go
         ];
       })
   ];
