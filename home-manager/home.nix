@@ -164,6 +164,9 @@
               # Check for nixpkgs functions (aka lib functions)
               lib.makeBinPath [ inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}".flutter ]
             }":$PATH;
+
+            # Needed for GPG keys to be found
+            export GPG_TTY=$(tty);
     '';
   };
 
