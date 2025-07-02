@@ -19,4 +19,8 @@
   services.udev.packages = [
     pkgs.android-udev-rules
   ];
+
+  environment.sessionVariables = {
+    ANDROID_HOME = "/home/altaks/Android/Sdk";
+  };
 }

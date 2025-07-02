@@ -20,6 +20,13 @@
     motrix # HTTP, FTP, Torrent, etc... : https://motrix.app/
   ];
 
+  environment.sessionVariables = {
+    CHROME_EXECUTABLE = "${
+      # Check for nixpkgs functions (aka lib functions)
+      lib.makeBinPath [ pkgs.chromium ]
+    }/chromium";
+  };
+
   # Install firefox the Nix way i guess
   programs.firefox.enable = true; # Mozilla Firefox
 }

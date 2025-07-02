@@ -119,6 +119,11 @@
     };
   };
 
+  # Define Zen Browser as the system default browser
+  home.sessionVariables.DEFAULT_BROWSER = "${
+    inputs.zen-browser.packages."${pkgs.system}".default
+  }/bin/zen";
+
   programs.bash = {
 
     # Use bash
@@ -155,13 +160,10 @@
             export LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
             
             # Export flutter & flutter related path
-            flutter_sdk=$(readlink -f $(which flutter) | awk '{sub(/\/flutter$/,"")}1')
-            export PATH="$flutter_sdk:$PATH";
-            export CHROME_EXECUTABLE="$(which chromium)"; 
-            
-            # Export Android related paths
-            export ANDROID_HOME="/home/altaks/Android/Sdk";
-            export MAVEN_OPTS="-Djna.library.path=${lib.makeLibraryPath [ pkgs.udev ]}"
+            export PATH="${
+              # Check for nixpkgs functions (aka lib functions)
+              lib.makeBinPath [ inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}".flutter ]
+            }":$PATH;
     '';
   };
 
@@ -434,11 +436,6 @@
     #video/x-ms-wvxvideo
 
   };
-
-  # Define Zen Browser as the system default browser
-  home.sessionVariables.DEFAULT_BROWSER = "${
-    inputs.zen-browser.packages."${pkgs.system}".default
-  }/bin/zen";
 
   # Enable Numlock on session enter
   xsession.numlock.enable = true;

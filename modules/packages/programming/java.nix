@@ -14,4 +14,8 @@
     maven # Maven build toolkit
     gradle # Gradle build toolkit
   ];
+
+  environment.sessionVariables = {
+    MAVEN_OPTS = "-Djna.library.path=${lib.makeLibraryPath [ pkgs.udev ]}";
+  };
 }
