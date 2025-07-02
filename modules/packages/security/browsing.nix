@@ -1,7 +1,14 @@
-{ inputs, config, lib, pkgs, ... }: { 
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   environment.systemPackages = with pkgs; [
-    tor         # Connecting to Tor - https://www.torproject.org/
+    tor # Connecting to Tor - https://www.torproject.org/
     tor-browser
   ];
 }

@@ -1,8 +1,14 @@
-{ config, pkgs, lib, ... } : {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   imports = [
     ./packages
-    
+
     ./audio.nix
     ./bluetooth.nix
     ./bootloader.nix

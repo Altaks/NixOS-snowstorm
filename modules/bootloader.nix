@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... } : {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   # Configures the bootloader
   boot.loader = {
@@ -23,7 +29,7 @@
 
       # Generates the GRUB menu but doesn't install GRUB related commands on the system
       device = "nodev";
-      
+
       # Allows to detect other OSes (dual and multiboot)
       useOSProber = true;
 
@@ -39,24 +45,24 @@
       # Configure the grub theme
       theme = "/home/altaks/.dotfiles/grub-theme";
 
-      # Add custom entries : 
+      # Add custom entries :
       # - Direct BIOS/UEFI access
       # - Instant shutdown
       # - Instant restart
       extraEntries = ''
-      menuentry "BIOS / UEFI (Motherboard configuration)" {
-        fwsetup
-      }
+        menuentry "BIOS / UEFI (Motherboard configuration)" {
+          fwsetup
+        }
 
-      menuentry "Shutdown" {
-        insmod halt
-        halt
-      }
+        menuentry "Shutdown" {
+          insmod halt
+          halt
+        }
 
-      menuentry "Restart" {
-        insmod reboot
-        reboot
-      }
+        menuentry "Restart" {
+          insmod reboot
+          reboot
+        }
       '';
     };
   };

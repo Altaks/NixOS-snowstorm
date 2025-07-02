@@ -14,14 +14,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nix community flakes 
+    # Nix community flakes
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, ... } @ inputs: 
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos-hardware,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -33,10 +39,10 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-    in rec
-    {
+    in
+    rec {
       nixosConfigurations = {
-        
+
         hantrox = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;

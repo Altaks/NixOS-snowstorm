@@ -1,4 +1,11 @@
-{ inputs, config, lib, pkgs, ... }: { 
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -19,7 +26,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    
+
     # Sound Open Firmware
     sof-firmware
     glxinfo

@@ -1,7 +1,14 @@
-{ inputs, config, lib, pkgs, ... }: { 
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   # Docker, Podman, VirtualBox and LibVirtd configuration;
-  virtualisation = { 
+  virtualisation = {
 
     # Documentation : https://docs.docker.com/get-started/docker-overview/
     # on NixOS      : https://nixos.wiki/wiki/Docker
@@ -67,16 +74,16 @@
 
   # Vagrant / Minimal configuration for NFS support with Vagrant.
   services.nfs.server.enable = true;
-  
-  # Vagrant / Add firewall exception for VirtualBox provider 
+
+  # Vagrant / Add firewall exception for VirtualBox provider
   networking.firewall.extraCommands = ''
     ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
   '';
 
-  # Vagrant / Add firewall exception for libvirt provider when using NFSv4 
-  networking.firewall.interfaces."virbr1" = {                                   
-    allowedTCPPorts = [ 2049 ];                                               
-    allowedUDPPorts = [ 2049 ];                                               
+  # Vagrant / Add firewall exception for libvirt provider when using NFSv4
+  networking.firewall.interfaces."virbr1" = {
+    allowedTCPPorts = [ 2049 ];
+    allowedUDPPorts = [ 2049 ];
   };
 
 }

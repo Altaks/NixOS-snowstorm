@@ -2,13 +2,19 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ 
-    
+  imports = [
+
     inputs.home-manager.nixosModules.default
-    
+
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules
@@ -16,12 +22,12 @@
 
   # Define Home Manager configuration entry
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "altaks" = import ./home-manager/home.nix;
     };
   };
-  
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -43,8 +49,16 @@
   users.users.altaks = {
     isNormalUser = true;
     description = "altaks";
-    extraGroups = [ "networkmanager" "wheel" "docker" "kvm" "adbusers" "qemu-libvirtd" "libvirtd" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "kvm"
+      "adbusers"
+      "qemu-libvirtd"
+      "libvirtd"
+    ];
+    packages = with pkgs; [ ];
   };
 
   users.extraGroups.vboxusers.members = [ "altaks" ];
@@ -66,7 +80,10 @@
     auto-optimise-store = true;
 
     # Allow experimental features to work
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
@@ -94,4 +111,3 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-

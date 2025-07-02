@@ -1,7 +1,14 @@
-{ inputs, config, lib, pkgs, ... }: { 
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   environment.systemPackages = with pkgs; [
-    baobab  # GNOME disk usage visualizer
+    baobab # GNOME disk usage visualizer
     gparted # Gparted - https://gparted.org/
   ];
 }

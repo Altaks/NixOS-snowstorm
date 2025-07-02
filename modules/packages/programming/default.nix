@@ -12,6 +12,7 @@
     ./grammars.nix
     ./java.nix
     ./javascript.nix
+    ./nix.nix
     ./protocols.nix
     ./python.nix
     ./rust.nix

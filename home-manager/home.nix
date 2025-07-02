@@ -1,4 +1,10 @@
-{ inputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   home.username = "altaks";
   home.homeDirectory = "/home/altaks";
@@ -18,7 +24,7 @@
     settings = {
       "org/gnome/shell" = {
         disable-user-extensions = false; # enables user extensions
-        
+
         # Enable installed extensions
         enabled-extensions = [
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
@@ -92,7 +98,15 @@
       "org/gnome/shell/extensions/vitals" = {
         hide-icons = false;
         hide-zeros = true;
-        hot-sensors = [ "_processor_usage_" "_memory_allocated_" "_gpu#1_utilization_" "__network-rx_max__" "__network-tx_max__" "_network_public_ip_" "__temperature_avg__" ];
+        hot-sensors = [
+          "_processor_usage_"
+          "_memory_allocated_"
+          "_gpu#1_utilization_"
+          "__network-rx_max__"
+          "__network-tx_max__"
+          "_network_public_ip_"
+          "__temperature_avg__"
+        ];
         icon-style = 1;
         include-static-gpu-info = true;
         include-static-info = true;
@@ -123,30 +137,31 @@
 
     # Extra content for ~/.bashrc
     bashrcExtra = ''
-      # Enable OyMyPosh with installede configuration
-      eval "$(oh-my-posh init bash --config ~/.dotfiles/oh-my-posh/config.json)"
-      
-      # Enable FZF + keybinds + completion
-      if command -v fzf-share >/dev/null; then
-        source "$(fzf-share)/key-bindings.bash"
-        source "$(fzf-share)/completion.bash"
-      fi
-    
-      # Start fastfetch if the opened terminal is wide enough
-      if [[ $(tput lines) -ge 43 && $(tput cols) -ge 92 ]]; then
-	      fastfetch
-      fi
+            # Enable OyMyPosh with installede configuration
+            eval "$(oh-my-posh init bash --config ~/.dotfiles/oh-my-posh/config.json)"
+            
+            # Enable FZF + keybinds + completion
+            if command -v fzf-share >/dev/null; then
+              source "$(fzf-share)/key-bindings.bash"
+              source "$(fzf-share)/completion.bash"
+            fi
+          
+            # Start fastfetch if the opened terminal is wide enough
+            if [[ $(tput lines) -ge 43 && $(tput cols) -ge 92 ]]; then
+      	      fastfetch
+            fi
 
-      # Export paths
-      export LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-      
-      # Export flutter & flutter related path
-      flutter_sdk=$(readlink -f $(which flutter) | awk '{sub(/\/flutter$/,"")}1')
-      export PATH="$flutter_sdk:$PATH";
-      export CHROME_EXECUTABLE="$(which chromium)"; 
-      
-      # Export Android related paths
-      export ANDROID_HOME="/home/altaks/Android/Sdk";
+            # Export paths
+            export LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+            
+            # Export flutter & flutter related path
+            flutter_sdk=$(readlink -f $(which flutter) | awk '{sub(/\/flutter$/,"")}1')
+            export PATH="$flutter_sdk:$PATH";
+            export CHROME_EXECUTABLE="$(which chromium)"; 
+            
+            # Export Android related paths
+            export ANDROID_HOME="/home/altaks/Android/Sdk";
+            export MAVEN_OPTS="-Djna.library.path=${lib.makeLibraryPath [ pkgs.udev ]}"
     '';
   };
 
@@ -171,7 +186,7 @@
     ".config/oh-my-posh".source = config.lib.file.mkOutOfStoreSymlink /home/altaks/.dotfiles/oh-my-posh;
   };
 
-  programs.home-manager.enable=true;
+  programs.home-manager.enable = true;
 
   # Define default apps for opening files
   xdg.mimeApps.enable = true;
@@ -207,7 +222,7 @@
     "video/x-theora+ogg" = "vlc.desktop";
     "video/x-theora" = "vlc.desktop";
     "audio/x-speex" = "vlc.desktop";
-    "audio/opus" = "vlc.desktop";                   
+    "audio/opus" = "vlc.desktop";
 
     # FLAC lossless audio
     "application/x-flac" = "vlc.desktop";
@@ -227,7 +242,7 @@
     "video/x-ms-wmv" = "vlc.desktop";
     "video/x-ms-wmx" = "vlc.desktop";
     "video/x-ms-wvx" = "vlc.desktop";
-    
+
     # AVI et al.
     "video/x-msvideo" = "vlc.desktop";
     "audio/x-pn-windows-acm" = "vlc.desktop";
@@ -238,7 +253,7 @@
     "video/x-avi" = "vlc.desktop";
 
     # Real audio and video
-    "application/vnd.rn-realmedia" = "vlc.desktop";     # RM
+    "application/vnd.rn-realmedia" = "vlc.desktop"; # RM
     "application/vnd.rn-realmedia-vbr" = "vlc.desktop"; # RMVB
     "audio/vnd.rn-realaudio" = "vlc.desktop";
     "audio/x-pn-realaudio" = "vlc.desktop";
@@ -249,8 +264,8 @@
 
     # MPEG related audio, video and transport
     # MPEG-2
-    "audio/mpeg" = "vlc.desktop";                       # IANA-registered
-    "audio/mpg" = "vlc.desktop";                        # IANA-registered
+    "audio/mpeg" = "vlc.desktop"; # IANA-registered
+    "audio/mpg" = "vlc.desktop"; # IANA-registered
     "audio/mp1" = "vlc.desktop";
     "audio/mp2" = "vlc.desktop";
     "audio/mp3" = "vlc.desktop";
@@ -259,7 +274,7 @@
     "audio/x-mp3" = "vlc.desktop";
     "audio/x-mpeg" = "vlc.desktop";
     "audio/x-mpg" = "vlc.desktop";
-    "video/mp2t" = "vlc.desktop";                       # TS
+    "video/mp2t" = "vlc.desktop"; # TS
     "video/mpeg" = "vlc.desktop";
     "video/mpeg-system" = "vlc.desktop";
     "video/x-mpeg" = "vlc.desktop";
@@ -267,23 +282,23 @@
     "video/x-mpeg-system" = "vlc.desktop";
 
     # MP4
-    "application/mpeg4-iod" = "vlc.desktop";            # IANA-registered
+    "application/mpeg4-iod" = "vlc.desktop"; # IANA-registered
     "application/mpeg4-muxcodetable" = "vlc.desktop";
     "application/x-extension-m4a" = "vlc.desktop";
     "application/x-extension-mp4" = "vlc.desktop";
     "audio/aac" = "vlc.desktop";
     "audio/m4a" = "vlc.desktop";
-    "audio/mp4" = "vlc.desktop";                        # IANA-registered
+    "audio/mp4" = "vlc.desktop"; # IANA-registered
     "audio/x-m4a" = "vlc.desktop";
     "audio/x-aac" = "vlc.desktop";
-    "video/mp4" = "vlc.desktop";                        # IANA-registered
+    "video/mp4" = "vlc.desktop"; # IANA-registered
     "video/mp4v-es" = "vlc.desktop";
     "video/x-m4v" = "vlc.desktop";
 
     # Apple QuickTime (MOV)
     "application/x-quicktime-media-link" = "vlc.desktop";
     "application/x-quicktimeplayer" = "vlc.desktop";
-    "video/quicktime" = "vlc.desktop";                  # IANA-registered
+    "video/quicktime" = "vlc.desktop"; # IANA-registered
 
     # Matroska container format
     "application/x-matroska" = "vlc.desktop";
@@ -295,29 +310,29 @@
     "audio/webm" = "vlc.desktop";
 
     # 3GPP related
-    "audio/3gpp" = "vlc.desktop";                       # IANA-registered
-    "audio/3gpp2" = "vlc.desktop";                      # IANA-registered
-    "audio/AMR" = "vlc.desktop";                        # IANA-registered
-    "audio/AMR-WB" = "vlc.desktop";                     # IANA-registered
+    "audio/3gpp" = "vlc.desktop"; # IANA-registered
+    "audio/3gpp2" = "vlc.desktop"; # IANA-registered
+    "audio/AMR" = "vlc.desktop"; # IANA-registered
+    "audio/AMR-WB" = "vlc.desktop"; # IANA-registered
     "video/3gp" = "vlc.desktop";
     "video/3gpp" = "vlc.desktop";
     "video/3gpp2" = "vlc.desktop";
 
     # URI scheme handlers (ie IP protocol support)
-    "x-scheme-handler/mms" = "vlc.desktop";             # MMS
-    "x-scheme-handler/mmsh" = "vlc.desktop";            # MMS over HTTP
-    "x-scheme-handler/rtsp" = "vlc.desktop";            # RSTP
+    "x-scheme-handler/mms" = "vlc.desktop"; # MMS
+    "x-scheme-handler/mmsh" = "vlc.desktop"; # MMS over HTTP
+    "x-scheme-handler/rtsp" = "vlc.desktop"; # RSTP
     "x-scheme-handler/rtp" = "vlc.desktop";
     "x-scheme-handler/rtmp" = "vlc.desktop";
-    "x-scheme-handler/icy" = "vlc.desktop";             # Icecast
-    "x-scheme-handler/icyx" = "vlc.desktop";            # Icecast
+    "x-scheme-handler/icy" = "vlc.desktop"; # Icecast
+    "x-scheme-handler/icyx" = "vlc.desktop"; # Icecast
 
     # Linux desktop environment hooks for ISOs etc.
     "application/x-cd-image" = "vlc.desktop";
     "x-content/audio-player" = "vlc.desktop";
 
     # Playlists / text/xml list with URLs
-    "application/ram" = "vlc.desktop";                  # Realaudio Metadata
+    "application/ram" = "vlc.desktop"; # Realaudio Metadata
     "application/xspf+xml" = "vlc.desktop";
     "audio/mpegurl" = "vlc.desktop";
     "audio/x-mpegurl" = "vlc.desktop";
@@ -325,15 +340,15 @@
     "audio/x-scpls" = "vlc.desktop";
     "text/google-video-pointer" = "vlc.desktop";
     "text/x-google-video-pointer" = "vlc.desktop";
-    "video/vnd.mpegurl" = "vlc.desktop";                # IANA-registered
-    "application/vnd.apple.mpegurl" = "vlc.desktop";    # HLS / M3U8
-    "application/vnd.ms-asf" = "vlc.desktop";           # ZPL/WVX
-    "application/vnd.ms-wpl" = "vlc.desktop";           # WPL
-    "application/sdp" = "vlc.desktop";                  # SDP for RT*P
+    "video/vnd.mpegurl" = "vlc.desktop"; # IANA-registered
+    "application/vnd.apple.mpegurl" = "vlc.desktop"; # HLS / M3U8
+    "application/vnd.ms-asf" = "vlc.desktop"; # ZPL/WVX
+    "application/vnd.ms-wpl" = "vlc.desktop"; # WPL
+    "application/sdp" = "vlc.desktop"; # SDP for RT*P
 
     # Digital Video
-    "audio/dv" = "vlc.desktop";                         # IANA-registered
-    "video/dv" = "vlc.desktop";                         # IANA-registered
+    "audio/dv" = "vlc.desktop"; # IANA-registered
+    "video/dv" = "vlc.desktop"; # IANA-registered
 
     # IFF related formats
     "audio/x-aiff" = "vlc.desktop";
@@ -355,17 +370,17 @@
     "audio/x-pn-au" = "vlc.desktop";
     "audio/x-pn-wav" = "vlc.desktop";
     "audio/x-wav" = "vlc.desktop";
-    "audio/x-adpcm" = "vlc.desktop";                 # Same as IANA registered audio/32KADPCM?
+    "audio/x-adpcm" = "vlc.desktop"; # Same as IANA registered audio/32KADPCM?
 
     # Raw audio
-    "audio/ac3" = "vlc.desktop";                     # IANA AC3
-    "audio/eac3" = "vlc.desktop";                    # IANA E-AC3
-    "audio/vnd.dts" = "vlc.desktop";                 # IANA DTS Audio
-    "audio/vnd.dts.hd" = "vlc.desktop";              # IANA DTS-HD
-    "audio/vnd.dolby.heaac.1" = "vlc.desktop";       # IANA Dolby HeAAC
-    "audio/vnd.dolby.heaac.2" = "vlc.desktop";       # IANA Dolby HeAAC
-    "audio/vnd.dolby.mlp" = "vlc.desktop";           # IANA MLP/TrueHD
-    "audio/basic" = "vlc.desktop";                   # IANA mulaw
+    "audio/ac3" = "vlc.desktop"; # IANA AC3
+    "audio/eac3" = "vlc.desktop"; # IANA E-AC3
+    "audio/vnd.dts" = "vlc.desktop"; # IANA DTS Audio
+    "audio/vnd.dts.hd" = "vlc.desktop"; # IANA DTS-HD
+    "audio/vnd.dolby.heaac.1" = "vlc.desktop"; # IANA Dolby HeAAC
+    "audio/vnd.dolby.heaac.2" = "vlc.desktop"; # IANA Dolby HeAAC
+    "audio/vnd.dolby.mlp" = "vlc.desktop"; # IANA MLP/TrueHD
+    "audio/basic" = "vlc.desktop"; # IANA mulaw
     "audio/midi" = "vlc.desktop";
 
     # Weird audio formats
@@ -393,7 +408,7 @@
     "audio/x-xm" = "vlc.desktop";
 
     # From the totem desktop file in Debian.  These need more work.
-    "application/mxf" = "vlc.desktop";                 # IANA-registered
+    "application/mxf" = "vlc.desktop"; # IANA-registered
     #application/smil               # IANA-registered
     #application/smil+xml           # IANA-registered
     #application/x-netshow-channel
@@ -421,7 +436,9 @@
   };
 
   # Define Zen Browser as the system default browser
-  home.sessionVariables.DEFAULT_BROWSER = "${inputs.zen-browser.packages."${pkgs.system}".default}/bin/zen";
+  home.sessionVariables.DEFAULT_BROWSER = "${
+    inputs.zen-browser.packages."${pkgs.system}".default
+  }/bin/zen";
 
   # Enable Numlock on session enter
   xsession.numlock.enable = true;

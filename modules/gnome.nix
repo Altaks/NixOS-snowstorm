@@ -1,4 +1,11 @@
-{ inputs, config, pkgs, lib, ... } : {
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   # Install Gnome extensions
   environment.systemPackages = with pkgs; [

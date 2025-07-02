@@ -1,4 +1,11 @@
-{ inputs, config, lib, pkgs, ... }: { 
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   environment.systemPackages = with pkgs; [
     # Raspberry Pi imager - https://www.raspberrypi.com/software/

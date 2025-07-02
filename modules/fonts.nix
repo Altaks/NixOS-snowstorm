@@ -1,4 +1,11 @@
-{ inputs, config, lib, pkgs, ... }: { 
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   # Install some nerd fonts for pretty characters display
   fonts = {
@@ -8,13 +15,30 @@
       fira-sans
       vistafonts
       roboto
-      (nerdfonts.override { fonts = [ "FiraCode" "CascadiaCode" "CascadiaMono" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "CascadiaCode"
+          "CascadiaMono"
+        ];
+      })
     ];
     fontconfig = {
       defaultFonts = {
-        serif = ["roboto-serif" "serif"];
-        sansSerif = ["Roboto" "Fira Sans" "sans-serif"];
-        monospace = ["CascadiaCode" "Fira Code" "monospace"];
+        serif = [
+          "roboto-serif"
+          "serif"
+        ];
+        sansSerif = [
+          "Roboto"
+          "Fira Sans"
+          "sans-serif"
+        ];
+        monospace = [
+          "CascadiaCode"
+          "Fira Code"
+          "monospace"
+        ];
       };
     };
   };

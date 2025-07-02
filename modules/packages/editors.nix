@@ -1,64 +1,84 @@
-{ inputs, config, lib, pkgs, ... }: { 
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   environment.systemPackages = with pkgs; [
-      # Terminal editors
-      vim
-      nano
+    # Terminal editors
+    vim
+    nano
 
-      # Zed editor - https://zed.dev/
-      zed-editor
+    # Zed editor - https://zed.dev/
+    zed-editor
 
-      # VSCodium (Open Source Visual Studio Code) with preinstalled extensions - https://vscodium.com/
-      (vscode-with-extensions.override {
-        vscode = vscodium;
-        vscodeExtensions = with vscode-extensions; [
-          
-          # Nix support
-          bbenoist.nix
+    # VSCodium (Open Source Visual Studio Code) with preinstalled extensions - https://vscodium.com/
+    (vscode-with-extensions.override {
+      vscode = vscodium;
+      vscodeExtensions = with vscode-extensions; [
 
-          # Catpuccin Theme
-          catppuccin.catppuccin-vsc-icons
-          catppuccin.catppuccin-vsc
+        # Nix support
+        jnoortheen.nix-ide
 
-          # Justfiles
-          skellock.just
+        # Catpuccin Theme
+        catppuccin.catppuccin-vsc-icons
+        catppuccin.catppuccin-vsc
 
-          # Open PDFs
-          tomoki1207.pdf
+        # Justfiles
+        skellock.just
 
-          # Markdown
-          yzhang.markdown-all-in-one
-          
-          # Flutter support
-          dart-code.flutter
-          alexisvt.flutter-snippets
+        # Open PDFs
+        tomoki1207.pdf
 
-          # Error lens
-          usernamehw.errorlens
+        # Markdown
+        yzhang.markdown-all-in-one
 
-          # Deno support
-          denoland.vscode-deno
+        # Flutter support
+        dart-code.flutter
+        alexisvt.flutter-snippets
 
-          # Kubernetes
-          ms-kubernetes-tools.vscode-kubernetes-tools
-          redhat.vscode-yaml
-          redhat.vscode-xml
+        # Error lens
+        usernamehw.errorlens
 
-          # Docker
-          ms-azuretools.vscode-docker
+        # Deno support
+        denoland.vscode-deno
 
-          # Paths intellisense
-          christian-kohler.path-intellisense
+        # Kubernetes
+        ms-kubernetes-tools.vscode-kubernetes-tools
+        redhat.vscode-yaml
+        redhat.vscode-xml
 
-          # Rust support
-          rust-lang.rust-analyzer
+        # Docker
+        ms-azuretools.vscode-docker
 
-          # Go support
-          golang.go
-        ];
-      })
+        # Paths intellisense
+        christian-kohler.path-intellisense
 
-      # Intellij IDEA Ultimate
-      jetbrains.idea-ultimate
+        # Rust support
+        rust-lang.rust-analyzer
+        tamasfe.even-better-toml
+
+        # Go support
+        golang.go
+
+        # Comments
+        aaron-bond.better-comments
+
+        # Git
+        mhutchie.git-graph
+
+        # TailwindCSS
+        bradlc.vscode-tailwindcss
+
+        # gRPC / protobuf
+        zxh404.vscode-proto3
+      ];
+    })
+
+    # Intellij IDEA Ultimate
+    jetbrains.idea-ultimate
   ];
 }
