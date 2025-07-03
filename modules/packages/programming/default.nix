@@ -1,10 +1,17 @@
-{ config, pkgs, lib, ... } : {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   imports = [
     ./android.nix
     ./c-cpp.nix
     ./db.nix
     ./debugging.nix
+    ./devops.nix
     ./documentation.nix
     ./embedded.nix
     ./flutter.nix
