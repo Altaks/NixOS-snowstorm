@@ -15,13 +15,10 @@
       fira-sans
       vistafonts
       roboto
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "CascadiaCode"
-          "CascadiaMono"
-        ];
-      })
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.fira-mono
+      nerd-fonts.fira-code
     ];
     fontconfig = {
       defaultFonts = {

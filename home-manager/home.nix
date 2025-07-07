@@ -35,7 +35,6 @@
           pkgs.gnomeExtensions.places-status-indicator.extensionUuid
           pkgs.gnomeExtensions.user-themes.extensionUuid
           pkgs.gnomeExtensions.hide-activities-button.extensionUuid
-          pkgs.gnomeExtensions.control-blur-effect-on-lock-screen.extensionUuid
           pkgs.gnomeExtensions.customize-clock-on-lock-screen.extensionUuid
           pkgs.gnomeExtensions.unlock-dialog-background.extensionUuid
           pkgs.gnomeExtensions.extension-list.extensionUuid

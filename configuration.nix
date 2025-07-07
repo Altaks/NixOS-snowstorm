@@ -72,7 +72,12 @@
   ];
 
   # Allow unfree packages & flakes
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-34.5.8"
+    ];
+  };
 
   # Configure Nix system
   nix.settings = {

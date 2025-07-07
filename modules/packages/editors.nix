@@ -80,5 +80,6 @@
 
     # Intellij IDEA Ultimate
     jetbrains.idea-ultimate
+
   ];
 }
