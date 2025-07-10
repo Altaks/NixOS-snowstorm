@@ -22,6 +22,7 @@
   dconf = {
     enable = true;
     settings = {
+
       "org/gnome/shell" = {
         disable-user-extensions = false; # enables user extensions
 
@@ -50,8 +51,17 @@
         clock-show-weekday = true;
       };
 
+      # To obtain these extensions configurations in the Nix format, use the following command :
+      # dconf dump /org/gnome/shell/extensions/<Extension Name>/ | dconf2nix
+
+      # dconf dump /org/gnome/shell/extensions/dash-to-panel/ | dconf2nix
       # Dash to panel configuration
       "org/gnome/shell/extensions/dash-to-panel" = {
+        animate-appicon-hover-animation-extent = {
+          RIPPLE = 4;
+          PLANK = 4;
+          SIMPLE = 1;
+        };
         appicon-margin = 8;
         appicon-padding = 4;
         available-monitors = [ 0 ];
@@ -59,24 +69,30 @@
         dot-color-override = false;
         dot-position = "BOTTOM";
         dot-style-unfocused = "DOTS";
+        extension-version = 68;
         focus-highlight-dominant = true;
         focus-highlight-opacity = 20;
         group-apps = true;
         hotkeys-overlay-combo = "TEMPORARILY";
         leftbox-padding = -1;
         panel-anchors = ''
-          {"0":"MIDDLE"}
+          {"AOC-AYBM71A001502":"MIDDLE","AOC-0x0003afb2":"MIDDLE"}
         '';
         panel-element-positions = ''
-          {"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}
+          {"AOC-AYBM71A001502":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}
         '';
+        panel-element-positions-monitors-sync = true;
         panel-lengths = ''
-          {"0":100}
+          {"AOC-AYBM71A001502":100}
+        '';
+        panel-positions = ''
+          {}
         '';
         panel-sizes = ''
-          {"0":40}
+          {"AOC-AYBM71A001502":40,"AOC-0x0003afb2":40}
         '';
-        primary-monitor = 0;
+        prefs-opened = false;
+        primary-monitor = "AOC-AYBM71A001502";
         secondarymenu-contains-showdetails = true;
         show-favorites-all-monitors = true;
         show-showdesktop-delay = 500;
@@ -93,6 +109,7 @@
         window-preview-title-position = "TOP";
       };
 
+      # dconf dump /org/gnome/shell/extensions/vitals/ | dconf2nix
       # Vitals extension configuration
       "org/gnome/shell/extensions/vitals" = {
         hide-icons = false;
